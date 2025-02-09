@@ -1,0 +1,89 @@
+
+create database AgriSales;
+use AgriSales;
+
+
+CREATE TABLE CustomerTable( 
+`Id` INT NOT NULL AUTO_INCREMENT,
+ 
+ `Name` VARCHAR(30) NOT NULL,
+ 
+  `Contact` VARCHAR(30) NOT NULL,
+  `Address` VARCHAR (200) NOT NULL,
+  PRIMARY KEY (`Id`));
+
+
+CREATE TABLE SellerTable( 
+`Id` INT NOT NULL AUTO_INCREMENT,
+ 
+ `Name` VARCHAR(30) NOT NULL,
+ 
+  `Contact` VARCHAR(30) NOT NULL,
+  `Address` VARCHAR (200) NOT NULL,
+  PRIMARY KEY (`Id`));
+
+
+
+CREATE TABLE SalesTable(
+  
+`Id` INT NOT NULL AUTO_INCREMENT,
+ 
+`CustomerName` VARCHAR(30) NOT NULL,
+ 
+`Date` Date NOT NULL,
+`Amount` Double NOT NULL,
+  PRIMARY KEY (`Id`));
+
+
+
+CREATE TABLE `SalesItemTable`(
+`SaleId` Int NOT NULL,
+`ProductType` Varchar(50) NOT NULL,
+`ProductName` Varchar(50) NOT NULL,
+`Rate` Double NOT NULL,
+`Qty` Double NOT NULL,
+Key (SaleId),
+ INDEX par1_ind (SaleId),
+  CONSTRAINT fk_SaleTable FOREIGN KEY (SaleId)
+  	REFERENCES Salestable (Id)
+		ON DELETE CASCADE
+  		ON UPDATE CASCADE);
+
+CREATE TABLE `PurchaseTable` (
+  
+`Id` INT NOT NULL AUTO_INCREMENT,
+ 
+`ProductType` Varchar(50) NOT NULL,
+ 
+`ProductName` Varchar(50) NOT NULL,
+ 
+`SellerName` VARCHAR(100) NOT NULL,
+ 
+`Quantity` Varchar(50) NOT NULL,
+   
+`PurchaseDate` date,
+`PurchaseRate` double NOT NULL default 0,
+  
+`SellingRate` double NOT NULL default 0,
+  
+ PRIMARY KEY (`Id`));
+
+
+
+CREATE TABLE `InventoryTable` (
+  
+`Id` INT NOT NULL AUTO_INCREMENT,
+ 
+`ProductType` Varchar(50) NOT NULL,
+
+`ProductName` Varchar(50) NOT NULL,
+ 
+`Quantity` Varchar(50) NOT NULL,
+   
+`PurchaseRate` double NOT NULL default 0,
+  
+`SellingRate` double NOT NULL default 0,
+  
+ PRIMARY KEY (`Id`));
+
+
